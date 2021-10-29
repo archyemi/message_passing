@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-default_box = "generic/opensuse42"
+default_box = "opensuse/Leap-15.2.x86_64"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -26,14 +26,15 @@ Vagrant.configure("2") do |config|
       end
     master.vm.provider "virtualbox" do |v|
       v.memory = "3072"
-      v.name = "master"
+      v.name = "message"
       end
     master.vm.provision "shell", inline: <<-SHELL
       sudo zypper refresh
       sudo zypper --non-interactive install bzip2
       sudo zypper --non-interactive install etcd
       sudo zypper --non-interactive install apparmor-parser
-      curl -sfL https://get.k3s.io | sh -
+      curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+      sudo chmod 644 /etc/rancher/k3s/k3s.yaml
     SHELL
   end
 
