@@ -20,10 +20,8 @@ producer = KafkaProducer(bootstrap_servers=[f'{KAFKA_HOST}:{KAFKA_PORT}'],
                     
 DATE_FORMAT = "%Y-%m-%d"
 
-api = Namespace("UdaConnect", description="Connections via geolocation.")  # noqa
+api = Namespace("UdaConnect", description="Connections via geolocation.")  
 
-
-# TODO: This needs better exception handling
 
 
 @api.route("/locations")

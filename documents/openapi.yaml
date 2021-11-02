@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: UdaConnect Refactored API
   version: 1.0.0
@@ -34,7 +34,8 @@ paths:
         description: The Unique ID for any given Person
         name: person_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       responses:
         '200':
@@ -47,7 +48,8 @@ paths:
       - in: query
         description: Unique ID for a given Location
         name: location_id
-        type: string
+        schema:
+          type: string
     get:
       responses:
         '200':
@@ -68,7 +70,8 @@ paths:
         description: Unique ID for a given Location
         name: location_id
         required: true
-        type: string
+        schema:
+          type: string
     get:
       responses:
         '200':
@@ -81,19 +84,23 @@ paths:
       - in: query
         description: Proximity to a given user in meters
         name: distance
-        type: string
+        schema:
+          type: string
       - in: query
         description: Upper bound of date range
         name: end_date
-        type: string
+        schema:
+          type: string
       - in: query
         description: Lower bound of date range
         name: start_date
-        type: string
+        schema:
+          type: string
       - name: person_id
         in: path
         required: true
-        type: string
+        schema:
+          type: string
     get:
       responses:
         '200':
@@ -102,18 +109,10 @@ paths:
       tags:
         - UdaConnect
 
-produces:
-  - application/json
-consumes:
-  - application/json
 tags:
   - name: UdaConnect API
     description: Connections via geolocation.
-responses:
-  ParseError:
-    description: When a mask can't be parsed
-  MaskError:
-    description: When any error occurs on mask
+
 components:
   schemas:
     PersonItem:
