@@ -16,8 +16,8 @@ stub = location_pb2_grpc.LocationServiceStub(channel)
 order = location_pb2.LocationSchema(
     id=1,
     person_id= 1,
-    longitude= "40.5534809999999849",
-    latitude= "-142.2905240000000049",
+    longitude= "72.5534809999999849",
+    latitude= "-200.124573000000049",
     creation_time=datetime.now().isoformat(),
 )
 

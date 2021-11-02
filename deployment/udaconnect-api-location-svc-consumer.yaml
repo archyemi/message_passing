@@ -45,7 +45,7 @@ spec:
               name: db-env
               key: DB_PORT
         - name: KAFKA_TOPIC
-          value: test
+          value: my-topic
         - name: KAFKA_PORT
           value: "9092"
         - name: KAFKA_HOST

@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: UdaConnect Refactored API
+  version: 1.0.0
+basePath: /
+paths:
+  /api/persons:
+    get:
+      summary: Retrieve details all persons 
+      responses:
+        '200':
+          description: Success
+      operationId: get_persons_resource
+      tags:
+        - UdaConnect API
+    post:
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: "Invalid input type."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonItem'
+        description: Person item to add
+      operationId: post_persons_resource
+      tags:
+        - UdaConnect API
+  /api/persons/{person_id}:
+    parameters:
+      - in: path
+        description: The Unique ID for any given Person
+        name: person_id
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: get_person_resource
+      tags:
+        - UdaConnect API
+  /api/locations:
+    parameters:
+      - in: query
+        description: Unique ID for a given Location
+        name: location_id
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: get_all_location_resource
+      tags:
+        - UdaConnect
+    post:
+      responses:
+        '200':
+          description: Success
+      operationId: post_location_resource
+      tags:
+        - UdaConnect
+  /api/locations/{location_id}:
+    parameters:
+      - in: path
+        description: Unique ID for a given Location
+        name: location_id
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: get_location_resource
+      tags:
+        - UdaConnect
+  /api/persons/{person_id}/connection:
+    parameters:
+      - in: query
+        description: Proximity to a given user in meters
+        name: distance
+        type: string
+      - in: query
+        description: Upper bound of date range
+        name: end_date
+        type: string
+      - in: query
+        description: Lower bound of date range
+        name: start_date
+        type: string
+      - name: person_id
+        in: path
+        required: true
+        type: string
+    get:
+      responses:
+        '200':
+          description: Success
+      operationId: get_connection_data_resource
+      tags:
+        - UdaConnect
+
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: UdaConnect API
+    description: Connections via geolocation.
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask
+components:
+  schemas:
+    PersonItem:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - company_name
+      properties:
+        first_name:
+          type: string
+          example: Peter
+        last_name:
+          type: string
+          example: Pan
+        company_name:
+          type: string
+          example: "Argo"
+        

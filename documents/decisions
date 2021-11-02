@@ -1,0 +1,14 @@
+I decomposed the API into several microservices listed below:
+- Persons API microservices
+- Connections API microservices
+- Locations REST API microservices
+- Locations gRPC API microservices
+- Strimzi Kafka Cluster
+- Locations data consumer microservices
+
+The Kafka cluster will be used to orchestrate and store location data.
+The Locations microservice handles alot of data so i have used kafka to decouple it from the backend so it can scale.
+
+REST and gRPC API were created for the locations service to provide options for clients based on their preferences.
+REST was created because it is the industry standard and a lot of clients will be familiar with it.
+gRPC was created to provide better perfomance for any client ready to interface with it.

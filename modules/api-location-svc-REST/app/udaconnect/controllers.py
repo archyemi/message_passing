@@ -11,9 +11,9 @@ from flask_restx import Namespace, Resource
 from kafka import KafkaProducer
 from json import dumps
 
-KAFKA_TOPIC = os.environ["KAFKA_TOPIC"]
-KAFKA_PORT = os.environ["KAFKA_PORT"]
-KAFKA_HOST = os.environ["KAFKA_HOST"]
+KAFKA_TOPIC = "my-topic"
+KAFKA_PORT = 9092
+KAFKA_HOST = "my-cluster-kafka-bootstrap.my-kafka-project.svc.cluster.local"
 producer = KafkaProducer(bootstrap_servers=[f'{KAFKA_HOST}:{KAFKA_PORT}'],
                          value_serializer=lambda x: 
                          dumps(x).encode('utf-8'))
